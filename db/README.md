@@ -1,4 +1,4 @@
-# MadeIn Database
+# MadeIn Database (Postgresql)
 
 
 ## Install
@@ -9,4 +9,8 @@
 
     make data
 
+## On a google MySQL instance
 
+## Connect from cloud console
+    
+    gcloud beta sql connect madeindb --user=root

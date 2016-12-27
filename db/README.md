@@ -11,6 +11,6 @@
 
 ## On a google MySQL instance
 
-## Connect from cloud console
+# Connect from cloud console
     
     gcloud beta sql connect madeindb --user=root

@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` TEXT NULL,
   `barcode` INT NULL,
-  `idmanfacturer` INT NULL,
+  `idmanufacturer` INT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_products_manufacturer1`
-    FOREIGN KEY (`idmanfacturer`)
+    FOREIGN KEY (`idmanufacturer`)
     REFERENCES `madeIn`.`manufacturer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -63,7 +63,7 @@ ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `id_UNIQUE` ON `madeIn`.`products` (`id` ASC);
 
-CREATE INDEX `fk_products_manufacturer1_idx` ON `madeIn`.`products` (`idmanfacturer` ASC);
+CREATE INDEX `fk_products_manufacturer1_idx` ON `madeIn`.`products` (`idmanufacturer` ASC);
 
 
 -- -----------------------------------------------------
@@ -146,28 +146,28 @@ CREATE UNIQUE INDEX `iduser_UNIQUE` ON `madeIn`.`address` (`id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `madeIn`.`manfacturer_factory`
+-- Table `madeIn`.`manufacturer_factory`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`manfacturer_factory` ;
+DROP TABLE IF EXISTS `madeIn`.`manufacturer_factory` ;
 
-CREATE TABLE IF NOT EXISTS `madeIn`.`manfacturer_factory` (
-  `idmanfacturer` INT NULL,
+CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer_factory` (
+  `idmanufacturer` INT NULL,
   `idfactory` INT NULL,
-  CONSTRAINT `fk_manfacturer_factory_manufacturer1`
-    FOREIGN KEY (`idmanfacturer`)
+  CONSTRAINT `fk_manufacturer_factory_manufacturer1`
+    FOREIGN KEY (`idmanufacturer`)
     REFERENCES `madeIn`.`manufacturer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_manfacturer_factory_factory1`
+  CONSTRAINT `fk_manufacturer_factory_factory1`
     FOREIGN KEY (`idfactory`)
     REFERENCES `madeIn`.`factory` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_manfacturer_factory_manufacturer1_idx` ON `madeIn`.`manfacturer_factory` (`idmanfacturer` ASC);
+CREATE INDEX `fk_manufacturer_factory_manufacturer1_idx` ON `madeIn`.`manufacturer_factory` (`idmanufacturer` ASC);
 
-CREATE INDEX `fk_manfacturer_factory_factory1_idx` ON `madeIn`.`manfacturer_factory` (`idfactory` ASC);
+CREATE INDEX `fk_manufacturer_factory_factory1_idx` ON `madeIn`.`manufacturer_factory` (`idfactory` ASC);
 
 
 -- -----------------------------------------------------
@@ -176,8 +176,8 @@ CREATE INDEX `fk_manfacturer_factory_factory1_idx` ON `madeIn`.`manfacturer_fact
 DROP TABLE IF EXISTS `madeIn`.`factory_address` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`factory_address` (
-  `idfactory` INT NULL,
-  `idaddress` VARCHAR(45) NULL,
+  `idfactory` INT NOT NULL,
+  `idaddress` INT NOT NULL,
   CONSTRAINT `fk_factory_address_factory1`
     FOREIGN KEY (`idfactory`)
     REFERENCES `madeIn`.`factory` (`id`)
@@ -201,10 +201,10 @@ CREATE INDEX `fk_factory_address_address1_idx` ON `madeIn`.`factory_address` (`i
 DROP TABLE IF EXISTS `madeIn`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`user` (
-  `username` (16) NULL,
-  `email` (255) NULL,
-  `password` (32) NULL,
-  `create_time`  NULL DEFAULT CURRENT_TIMESTAMP,
+  `username` VARCHAR(16) NULL,
+  `email` VARCHAR(255) NULL,
+  `password` VARCHAR(32) NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `id` INT NOT NULL AUTO_INCREMENT,
   `products_contributed` INT NULL,
   PRIMARY KEY (`id`));
@@ -231,7 +231,7 @@ DROP TABLE IF EXISTS `madeIn`.`product_contributor` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`product_contributor` (
   `idproducts` INT NULL,
-  `iduser` INT NULL,
+  `iduser` INT NOT NULL,
   `contribution_type` INT NULL,
   CONSTRAINT `fk_product_contributor_user1`
     FOREIGN KEY (`iduser`)
@@ -265,7 +265,7 @@ DROP TABLE IF EXISTS `madeIn`.`manufacturer_contributor` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer_contributor` (
   `idmanufacturer` INT NULL,
   `contribution_type` INT NULL,
-  `iduser` INT NULL,
+  `iduser` INT NOT NULL,
   CONSTRAINT `fk_manufacturer_contributor_contribution_type1`
     FOREIGN KEY (`contribution_type`)
     REFERENCES `madeIn`.`contribution_type` (`idcontribution`)

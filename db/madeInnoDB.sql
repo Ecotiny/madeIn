@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `madeIn`.`products` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` TEXT NULL,
-  `barcode` INT NULL,
+  `barcode` VARCHAR(40),
   `idmanufacturer` INT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_products_manufacturer1`

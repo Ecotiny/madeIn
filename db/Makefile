@@ -15,3 +15,6 @@ db:
 
 install:
 	sudo aptitude install postgresql
+
+login:
+	mysql -u root -p madeIn

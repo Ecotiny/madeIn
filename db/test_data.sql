@@ -3,6 +3,15 @@ INSERT INTO manufacturer (name) VALUES ('4i Systems');
 INSERT INTO city (name) VALUES ('Bobbyton');
 INSERT INTO state (name) VALUES ('Cheese County');
 INSERT INTO Country (name) VALUES ('Cheeseland');
+INSERT INTO manufacturer (name) VALUES ('Nandos');
+INSERT INTO factory (name) VALUES ('Nandos SA');
+INSERT INTO manufacturer_factory (idfactory, idmanufacturer) VALUES (1,3);
+INSERT INTO city (name) VALUES ('Johannesburg');
+INSERT INTO state (name) VALUES ('Gaunteng');
+INSERT INTO Country (name) VALUES ('South Africa');
+INSERT INTO address (street, city, state, country, zip) VALUES ('10A Victoria Rd', 2, 2, 2, '2094');
+INSERT INTO factory_address (idfactory, idaddress) VALUES (1,1);
+
 INSERT INTO products (name, barcode, idmanufacturer) VALUES ('Your mum', 123456789, 1);
 INSERT INTO address (street, city, state, country, zip) VALUES ('Manly St', 1, 1, 1, '1090');
 INSERT INTO factory (name) VALUES ('Bobbytory');

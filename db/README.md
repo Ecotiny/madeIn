@@ -1,4 +1,4 @@
-# MadeIn Database (Postgresql)
+# MadeIn Database (SQL)
 
 
 ## Install

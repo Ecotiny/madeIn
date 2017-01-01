@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `madeIn`.`Country` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`Country` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` TEXT NULL,
+  `code` VARCHAR(2),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -37,8 +38,17 @@ DROP TABLE IF EXISTS `madeIn`.`manufacturer` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` TEXT NULL,
-  PRIMARY KEY (`id`))
+  `idcountryman` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_address_Country3`
+    FOREIGN KEY (`idcountryman`)
+    REFERENCES `madeIn`.`Country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_address_Country3_idx` ON `madeIn`.`manufacturer` (`idcountryman` ASC);
 
 CREATE UNIQUE INDEX `idmanufacturer_UNIQUE` ON `madeIn`.`manufacturer` (`id` ASC);
 
@@ -65,6 +75,24 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `madeIn`.`products` (`id` ASC);
 
 CREATE INDEX `fk_products_manufacturer1_idx` ON `madeIn`.`products` (`idmanufacturer` ASC);
 
+-- -----------------------------------------------------
+-- Table `madeIn`.`state`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `madeIn`.`state` ;
+
+CREATE TABLE IF NOT EXISTS `madeIn`.`state` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `idcountry` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_address_Country2`
+    FOREIGN KEY (`idcountry`)
+    REFERENCES `madeIn`.`Country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_address_Country2_idx` ON `madeIn`.`state` (`idcountry` ASC);
 
 -- -----------------------------------------------------
 -- Table `madeIn`.`city`
@@ -74,9 +102,16 @@ DROP TABLE IF EXISTS `madeIn`.`city` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`city` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` TEXT NULL,
-  PRIMARY KEY (`id`))
+  `stateid` INT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_address_state2`
+    FOREIGN KEY (`stateid`)
+    REFERENCES `madeIn`.`state` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_address_state2_idx` ON `madeIn`.`city` (`stateid` ASC);
 
 -- -----------------------------------------------------
 -- Table `madeIn`.`factory`
@@ -94,17 +129,6 @@ ENGINE = InnoDB;
 CREATE UNIQUE INDEX `idfactory_UNIQUE` ON `madeIn`.`factory` (`id` ASC);
 
 
--- -----------------------------------------------------
--- Table `madeIn`.`state`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`state` ;
-
-CREATE TABLE IF NOT EXISTS `madeIn`.`state` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `madeIn`.`address`
@@ -114,9 +138,9 @@ DROP TABLE IF EXISTS `madeIn`.`address` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(255) NULL,
-  `city` INT NULL,
-  `state` INT NULL,
-  `country` INT NULL,
+  `city` INT NOT NULL,
+  `state` INT NOT NULL,
+  `country` INT NOT NULL,
   `zip` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_address_city1`

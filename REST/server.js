@@ -18,7 +18,8 @@ REST.prototype.connectMysql = function() {
         host : 'localhost' ,
         password : 'idunno' ,
         database : 'madeIn' ,
-        debug : false
+        debug : false,
+        multipleStatements: true
     });
     pool.getConnection(function(err,connection){
         if(err) {

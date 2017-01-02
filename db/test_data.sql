@@ -1,5 +1,4 @@
-INSERT INTO Country (name, code) VALUES ('South Africa', 'SA');
-INSERT INTO state (name, idcountry) VALUES ('Gaunteng', 1);
+INSERT INTO state (name, idcountry) VALUES ('Gaunteng', 197);
 INSERT INTO city (name, stateid) VALUES ('Johannesburg', 1);
 INSERT INTO manufacturer (name, idcountryman) VALUES ('Nandos',1);
 INSERT INTO factory (name) VALUES ('Nandos SA');

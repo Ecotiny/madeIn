@@ -13,6 +13,8 @@ A food miles calculator based on community input
     /country
         get
         get id
+        get name
     /state
         get
         get id (returns country name)
+

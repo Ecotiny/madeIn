@@ -3,31 +3,10 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema madeIn
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema madeIn
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `madeIn` DEFAULT CHARACTER SET utf8 ;
-USE `madeIn` ;
-
--- -----------------------------------------------------
--- Table `madeIn`.`Country`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`Country` ;
-
-CREATE TABLE IF NOT EXISTS `madeIn`.`Country` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` TEXT NULL,
-  `code` VARCHAR(2),
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -40,16 +19,18 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer` (
   `name` TEXT NULL,
   `idcountryman` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_address_Country3`
+  CONSTRAINT `fk_address_countries3`
     FOREIGN KEY (`idcountryman`)
-    REFERENCES `madeIn`.`Country` (`id`)
+    REFERENCES `madeIn`.`countries` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_address_Country3_idx` ON `madeIn`.`manufacturer` (`idcountryman` ASC);
-
+CREATE INDEX `fk_address_countries3_idx` ON `madeIn`.`manufacturer` (`idcountryman` ASC);
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE UNIQUE INDEX `idmanufacturer_UNIQUE` ON `madeIn`.`manufacturer` (`id` ASC);
 
 
@@ -76,42 +57,9 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `madeIn`.`products` (`id` ASC);
 CREATE INDEX `fk_products_manufacturer1_idx` ON `madeIn`.`products` (`idmanufacturer` ASC);
 
 -- -----------------------------------------------------
--- Table `madeIn`.`state`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`state` ;
-
-CREATE TABLE IF NOT EXISTS `madeIn`.`state` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `idcountry` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_address_Country2`
-    FOREIGN KEY (`idcountry`)
-    REFERENCES `madeIn`.`Country` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_address_Country2_idx` ON `madeIn`.`state` (`idcountry` ASC);
-
--- -----------------------------------------------------
 -- Table `madeIn`.`city`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`city` ;
 
-CREATE TABLE IF NOT EXISTS `madeIn`.`city` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` TEXT NULL,
-  `stateid` INT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_address_state2`
-    FOREIGN KEY (`stateid`)
-    REFERENCES `madeIn`.`state` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_address_state2_idx` ON `madeIn`.`city` (`stateid` ASC);
 
 -- -----------------------------------------------------
 -- Table `madeIn`.`factory`
@@ -148,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`address` (
     REFERENCES `madeIn`.`city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_address_Country1`
+  CONSTRAINT `fk_address_countries1`
     FOREIGN KEY (`country`)
-    REFERENCES `madeIn`.`Country` (`id`)
+    REFERENCES `madeIn`.`countries` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_address_state1`
@@ -162,7 +110,7 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_address_city1_idx` ON `madeIn`.`address` (`city` ASC);
 
-CREATE INDEX `fk_address_Country1_idx` ON `madeIn`.`address` (`country` ASC);
+CREATE INDEX `fk_address_countries1_idx` ON `madeIn`.`address` (`country` ASC);
 
 CREATE INDEX `fk_address_state1_idx` ON `madeIn`.`address` (`state` ASC);
 

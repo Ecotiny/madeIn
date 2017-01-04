@@ -97,7 +97,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var tables = [idvar];
         query = mysql.format(query, tables);
         connection.query(query, function(err,results){
-            console.log("get country by id: ", query);
+            console.log("get country by name: ", query);
             res.json({"results" : results});
         })
     })
@@ -183,6 +183,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var query1 = "SELECT name FROM states WHERE id = ?";
         console.log("get city by id:" + query);
         connection.query(query, function(err,result){
+            console.log(result[0].stateid);
+            console.log(result[0]);
             query1 = mysql.format(query1, [result[0].stateid]);
             connection.query(query1, function(err,result1){
                 var out = [result, {"State" : result1}];
@@ -203,6 +205,24 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
                 res.json({"Query" : "Complete"});
             };
         });
+    });
+    //FACTORY
+    router.get("/factories", function(req, res){
+        var query = "SELECT * FROM factory";
+        console.log("get all factories: " + query);
+        connection.query(query, function(err, result){
+            res.json(result);
+        })
+    })
+    router.get("/factories:id", function(req,res){
+        var idvar = req.params.id;
+        while(idvar.charAt(0) === ':')
+            idvar = idvar.substr(1);
+        var query = "SELECT factory.factoryid, factory.factoryname, manufacturer.manuid, manufacturer.manufacturername, manufacturer.idcountryman, address.street, address.city, address.state, address.country, address.zip FROM factory                                                          JOIN manufacturer_factory ON factory.factoryid=manufacturer_factory.idfactory                                                                      JOIN manufacturer ON manufacturer_factory.idmanufacturer=manufacturer.manuid                                                                        JOIN factory_address ON factory.factoryid=factory_address.idfactory JOIN address ON factory_address.idaddress=address.id                               WHERE factory.factoryid = " + idvar;
+        console.log(query);
+        connection.query(query, function(err, rows){
+            res.json(rows);
+        })
     });
 } 
 

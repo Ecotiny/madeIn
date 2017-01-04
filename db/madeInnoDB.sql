@@ -15,10 +15,10 @@
 DROP TABLE IF EXISTS `madeIn`.`manufacturer` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` TEXT NULL,
+  `manuid` INT NOT NULL AUTO_INCREMENT,
+  `manufacturername` TEXT NULL,
   `idcountryman` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`manuid`),
   CONSTRAINT `fk_address_countries3`
     FOREIGN KEY (`idcountryman`)
     REFERENCES `madeIn`.`countries` (`id`)
@@ -31,7 +31,7 @@ CREATE INDEX `fk_address_countries3_idx` ON `madeIn`.`manufacturer` (`idcountrym
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-CREATE UNIQUE INDEX `idmanufacturer_UNIQUE` ON `madeIn`.`manufacturer` (`id` ASC);
+CREATE UNIQUE INDEX `idmanufacturer_UNIQUE` ON `madeIn`.`manufacturer` (`manuid` ASC);
 
 
 -- -----------------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`products` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_products_manufacturer1`
     FOREIGN KEY (`idmanufacturer`)
-    REFERENCES `madeIn`.`manufacturer` (`id`)
+    REFERENCES `madeIn`.`manufacturer` (`manuid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -67,14 +67,12 @@ CREATE INDEX `fk_products_manufacturer1_idx` ON `madeIn`.`products` (`idmanufact
 DROP TABLE IF EXISTS `madeIn`.`factory` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`factory` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` TEXT NULL,
-  `idaddress` INT NULL,
-  `idmanufacturer` INT NULL,
-  PRIMARY KEY (`id`))
+  `factoryid` INT NOT NULL AUTO_INCREMENT,
+  `factoryname` TEXT NULL,
+  PRIMARY KEY (`factoryid`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `idfactory_UNIQUE` ON `madeIn`.`factory` (`id` ASC);
+CREATE UNIQUE INDEX `idfactory_UNIQUE` ON `madeIn`.`factory` (`factoryid` ASC);
 
 
 
@@ -103,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`address` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_address_state1`
     FOREIGN KEY (`state`)
-    REFERENCES `madeIn`.`state` (`id`)
+    REFERENCES `madeIn`.`states` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -127,12 +125,12 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer_factory` (
   `idfactory` INT NULL,
   CONSTRAINT `fk_manufacturer_factory_manufacturer1`
     FOREIGN KEY (`idmanufacturer`)
-    REFERENCES `madeIn`.`manufacturer` (`id`)
+    REFERENCES `madeIn`.`manufacturer` (`manuid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_manufacturer_factory_factory1`
     FOREIGN KEY (`idfactory`)
-    REFERENCES `madeIn`.`factory` (`id`)
+    REFERENCES `madeIn`.`factory` (`factoryid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -152,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`factory_address` (
   `idaddress` INT NOT NULL,
   CONSTRAINT `fk_factory_address_factory1`
     FOREIGN KEY (`idfactory`)
-    REFERENCES `madeIn`.`factory` (`id`)
+    REFERENCES `madeIn`.`factory` (`factoryid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_factory_address_address1`
@@ -245,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer_contributor` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_manufacturer_contributor_manufacturer1`
     FOREIGN KEY (`idmanufacturer`)
-    REFERENCES `madeIn`.`manufacturer` (`id`)
+    REFERENCES `madeIn`.`manufacturer` (`manuid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_manufacturer_contributor_user1`

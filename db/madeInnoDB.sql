@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `madeIn`.`products` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` TEXT NULL,
+  `name` TEXT NULL,
   `barcode` VARCHAR(40),
   `idmanufacturer` INT NULL,
   PRIMARY KEY (`id`),
@@ -112,7 +112,7 @@ CREATE INDEX `fk_address_countries1_idx` ON `madeIn`.`address` (`country` ASC);
 
 CREATE INDEX `fk_address_state1_idx` ON `madeIn`.`address` (`state` ASC);
 
-CREATE UNIQUE INDEX `iduser_UNIQUE` ON `madeIn`.`address` (`id` ASC);
+CREATE UNIQUE INDEX `idusers_UNIQUE` ON `madeIn`.`address` (`id` ASC);
 
 
 -- -----------------------------------------------------
@@ -166,20 +166,19 @@ CREATE INDEX `fk_factory_address_address1_idx` ON `madeIn`.`factory_address` (`i
 
 
 -- -----------------------------------------------------
--- Table `madeIn`.`user`
+-- Table `madeIn`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`user` ;
+DROP TABLE IF EXISTS `madeIn`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `madeIn`.`user` (
-  `username` VARCHAR(16) NULL,
+CREATE TABLE IF NOT EXISTS `madeIn`.`users` (
+  `usersname` VARCHAR(16) NULL,
   `email` VARCHAR(255) NULL,
-  `password` VARCHAR(32) NULL,
+  `passwd` VARCHAR(32) NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `id` INT NOT NULL AUTO_INCREMENT,
-  `products_contributed` INT NULL,
   PRIMARY KEY (`id`));
 
-CREATE UNIQUE INDEX `iduser_UNIQUE` ON `madeIn`.`user` (`id` ASC);
+CREATE UNIQUE INDEX `idusers_UNIQUE` ON `madeIn`.`users` (`id` ASC);
 
 
 -- -----------------------------------------------------
@@ -188,8 +187,8 @@ CREATE UNIQUE INDEX `iduser_UNIQUE` ON `madeIn`.`user` (`id` ASC);
 DROP TABLE IF EXISTS `madeIn`.`contribution_type` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`contribution_type` (
-  `idcontribution` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `idcontribution` INT NOT NULL AUTO_INCREMENT,
+  `contriname` VARCHAR(45) NULL,
   PRIMARY KEY (`idcontribution`))
 ENGINE = InnoDB;
 
@@ -201,11 +200,11 @@ DROP TABLE IF EXISTS `madeIn`.`product_contributor` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`product_contributor` (
   `idproducts` INT NULL,
-  `iduser` INT NOT NULL,
+  `idusers` INT NOT NULL,
   `contribution_type` INT NULL,
-  CONSTRAINT `fk_product_contributor_user1`
-    FOREIGN KEY (`iduser`)
-    REFERENCES `madeIn`.`user` (`id`)
+  CONSTRAINT `fk_product_contributor_users1`
+    FOREIGN KEY (`idusers`)
+    REFERENCES `madeIn`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_contributor_products1`
@@ -220,45 +219,57 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`product_contributor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_product_contributor_user1_idx` ON `madeIn`.`product_contributor` (`iduser` ASC);
+CREATE INDEX `fk_product_contributor_users1_idx` ON `madeIn`.`product_contributor` (`idusers` ASC);
 
 CREATE INDEX `fk_product_contributor_products1_idx` ON `madeIn`.`product_contributor` (`idproducts` ASC);
 
 CREATE INDEX `fk_product_contributor_contribution_type1_idx` ON `madeIn`.`product_contributor` (`contribution_type` ASC);
 
+-- -----------------------------------------------------
+-- Table `madeIn`.`categories`
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `madeIn`.`categories`;
+
+CREATE TABLE IF NOT EXISTS `madeIn`.`categories` (
+    `idcat` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(60),
+    PRIMARY KEY (`idcat`));
+
+CREATE UNIQUE INDEX `idcategories_UNIQUE` ON `madeIn`.`categories` (`idcat` ASC);
 
 -- -----------------------------------------------------
--- Table `madeIn`.`manufacturer_contributor`
+-- table product_category
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `madeIn`.`manufacturer_contributor` ;
 
-CREATE TABLE IF NOT EXISTS `madeIn`.`manufacturer_contributor` (
-  `idmanufacturer` INT NULL,
-  `contribution_type` INT NULL,
-  `iduser` INT NOT NULL,
-  CONSTRAINT `fk_manufacturer_contributor_contribution_type1`
-    FOREIGN KEY (`contribution_type`)
-    REFERENCES `madeIn`.`contribution_type` (`idcontribution`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_manufacturer_contributor_manufacturer1`
-    FOREIGN KEY (`idmanufacturer`)
-    REFERENCES `madeIn`.`manufacturer` (`manuid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_manufacturer_contributor_user1`
-    FOREIGN KEY (`iduser`)
-    REFERENCES `madeIn`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS `madeIn`.`product_category`;
 
-CREATE INDEX `fk_manufacturer_contributor_contribution_type1_idx` ON `madeIn`.`manufacturer_contributor` (`contribution_type` ASC);
+CREATE TABLE IF NOT EXISTS `madeIn`.`product_category` (
+    `idcategory` INT NOT NULL,
+    `idproductcat` INT NOT NULL,
+    CONSTRAINT `fk_product_category_idproductcat1`
+        FOREIGN KEY (`idproductcat`)
+        REFERENCES `madeIn`.`products` (`id`),
+    CONSTRAINT `fk_product_category_idcategory1`
+        FOREIGN KEY (`idcategory`)
+        REFERENCES `madeIn`.`categories` (`idcat`)
+);
 
-CREATE INDEX `fk_manufacturer_contributor_manufacturer1_idx` ON `madeIn`.`manufacturer_contributor` (`idmanufacturer` ASC);
+-- -----------------------------------------------------
+-- Table product_factory
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `madeIn`.`product_factory`;
 
-CREATE INDEX `fk_manufacturer_contributor_user1_idx` ON `madeIn`.`manufacturer_contributor` (`iduser` ASC);
-
+CREATE TABLE IF NOT EXISTS `madeIn`.`product_factory` (
+    `idproduct` INT NOT NULL,
+    `idfactory` INT NOT NULL,
+    CONSTRAINT `fk_product_factory_idproduct1`
+        FOREIGN KEY (`idproduct`)
+        REFERENCES `madeIn`.`products` (`id`),
+    CONSTRAINT `fk_product_factory_idfactory1`
+        FOREIGN KEY (`idfactory`)
+        REFERENCES `madeIn`.`factory` (`factoryid`)
+);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

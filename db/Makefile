@@ -1,13 +1,17 @@
 # The first target will be the default
 
-SQL_OPTS=-u root -p
+SQL_OPTS=-u root 
+# The password has to be set using
+# mysql_config_editor set -p
+# This must be done before issuing commands
+
 
 note:
 	echo "Please specify a target for make."
 
 data:
 	#psql -f test_data.sql madein
-	mysql -u root -p madeIn < test_data.sql
+	mysql ${SQL_OPTS}  madeIn < test_data.sql
 
 db:
 	#- dropdb madein
@@ -22,4 +26,4 @@ install:
 	sudo aptitude install postgresql
 
 login:
-	mysql -u root -p madeIn
+	mysql ${SQL_OPTS} madeIn

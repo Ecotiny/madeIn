@@ -11,7 +11,9 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     
     
     
-    //PRODUCTS
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //-------------------PRODUCTS---------------------
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     router.get("/products",function(req,res){
         var query = "SELECT * FROM products";
         connection.query(query,function(err,rows){
@@ -31,7 +33,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
     router.put("/products", function(req,res){
-        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?);";
+        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor";
         var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman)];
         query = mysql.format(query,tables);
         console.log("put products: " + query);
@@ -44,6 +46,27 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
             };
         });
     });
+    //contributions
+    router.get("/contrib", function(req,res){
+        var query = "SELECT * FROM contribution_type";
+        console.log("get contrib");
+        connection.query(query, function(err,rows){
+            res.json(rows);
+        })
+    })
+    router.put("/contrib", function(req,res){
+        var query = "INSERT INTO contribution_type (contriname) VALUES (?)";
+        var tables = [req.body.name];
+        query = mysql.format(query, tables);
+        console.log("put contrib: " + query);
+        connection.query(query, function(err,rows){
+            if (err) {
+                res.json({"ERROR" : "YUP"});
+            } else {
+                res.json({"ERROR" : "nope"});
+            }    
+        })
+    })
     
     
     //MANUFACTURER
@@ -58,17 +81,12 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var idvar = req.params.id;
         while(idvar.charAt(0) === ':')
             idvar = idvar.substr(1);
-        var query = "SELECT * FROM ?? WHERE ?? = ?;";
-        var tables = ['manufacturer','id', idvar];
+        var query = "SELECT * FROM manufacturer JOIN countries ON manufacturer.idcountryman=countries.id WHERE manufacturer.manuid = ?";
+        var tables = [parseInt(idvar)];
         query = mysql.format(query,tables);
-        var query1 = "SELECT name FROM countries WHERE id = ?";
-        console.log("get manufacturer by id: " + query);
+        console.log("get manu by id: " + query);
         connection.query(query, function(err,result){
-            query1 = mysql.format(query1, [result[0].idcountryman]);
-            connection.query(query1, function(err,result1){
-                var out = [result[0], result1];
-                res.json(out);
-            });
+            res.json(result);
         });
     });
     router.put("/manu", function(req,res){
@@ -131,24 +149,12 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var idvar = req.params.id;
         while(idvar.charAt(0) === ':')
             idvar = idvar.substr(1);
-        var query = "SELECT * FROM ?? WHERE ?? = ?";
-        var tables = ['states','id', idvar];
+        var query = "SELECT states.id, states.statename, states.country_id, countries.name, countries.id FROM states JOIN countries ON states.country_id=countries.id WHERE states.id = ?";
+        var tables = [parseInt(idvar)];
         query = mysql.format(query,tables);
         console.log("get state by id: " + query);
         connection.query(query, function(err,result){
-            var query1 = "SELECT name FROM countries WHERE id = ?";
-            query1 = mysql.format(query1, [result[0].country_id]);
-            console.log(result);
-            connection.query(query1, function(err,result1){
-                if(err) {
-                    console.log("error with second query");
-                } else{
-                    var out = [result, {"Country" : result1}];
-                    console.log(result1);
-                    console.log(query1);
-                    res.json(out);
-                }
-            });
+            res.json(result);
         });
     });
     router.put("/address/state", function(req,res){
@@ -177,19 +183,12 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var idvar = req.params.id;
         while(idvar.charAt(0) === ':')
             idvar = idvar.substr(1);
-        var query = "SELECT * FROM ?? WHERE ?? = ?";
-        var tables = ['city','id', idvar];
+        var query = "SELECT city.name, city.id, city.stateid, states.statename, states.country_id FROM city JOIN states ON city.stateid=states.id WHERE city.id = ?";
+        var tables = [parseInt(idvar)];
         query = mysql.format(query,tables);
-        var query1 = "SELECT name FROM states WHERE id = ?";
         console.log("get city by id:" + query);
         connection.query(query, function(err,result){
-            console.log(result[0].stateid);
-            console.log(result[0]);
-            query1 = mysql.format(query1, [result[0].stateid]);
-            connection.query(query1, function(err,result1){
-                var out = [result, {"State" : result1}];
-                res.json(out);
-            });
+            res.json(result);
         });
     });
     router.put("/address/city", function(req,res){
@@ -224,6 +223,31 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
             res.json(rows);
         })
     });
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //---------------------USER-----------------------
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    router.get("/user", function(req, res){
+        var query = "SELECT * FROM users";
+        console.log("get users: " + query);
+        connection.query(query, function(err,rows){
+            res.json(rows);
+        })
+    })
+    router.put("/user", function(req, res){
+        var query = "INSERT INTO users (usersname, email, passwd) VALUES (?,?,?)";
+        var tables = [req.body.username, req.body.email, md5(req.body.password)];
+        query = mysql.format(query, tables);
+        console.log("put users" + query);
+        connection.query(query, function(err, rows){
+            if (err) {
+                console.log("ERROR");
+                res.json({"error" : "YEP"});
+            } else {
+                console.log("NO ERROR");
+                res.json({"error" : "Nope"});
+            }
+        });
+    })
 } 
 
 module.exports = REST_ROUTER;

@@ -20,20 +20,18 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
             res.json(rows);
         })
     });
-    router.get("/products:id", function(req,res){
-        var idvar = req.params.id;
+    router.get("/products:barcode", function(req,res){
+        var idvar = req.params.barcode;
         while(idvar.charAt(0) === ':')
             idvar = idvar.substr(1);
-        var query = "SELECT * FROM products WHERE id = " + idvar;
-        var tables = ['products','id', req.params.id];
-        query = mysql.format(query,tables);
-        console.log("get products by id:" + query);
+        var query = "SELECT * FROM products JOIN manufacturer ON products.idmanufacturer=manufacturer.manuid JOIN product_factory ON products.id=product_factory.idproduct JOIN factory ON factory.factoryid=product_factory.idfactory JOIN factory_address ON factory_address.idfactory=factory.factoryid JOIN address ON factory_address.idaddress=address.id WHERE products.barcode = " + parseInt(idvar);
+        console.log("get products by barcode: " + query);
         connection.query(query,function(err,rows){
             res.json(rows);
         });
     });
     router.put("/products", function(req,res){
-        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor";
+        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor (idproduct, iduser, contribution_type) VALUES";
         var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman)];
         query = mysql.format(query,tables);
         console.log("put products: " + query);
@@ -196,7 +194,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var tables = [req.body.name, req.body.stateid];
         query = mysql.format(query,tables);
         console.log("put city: " + query);
-        console.log(parseInt(req.body.barcode));
         connection.query(query,function(err,rows){
             if(err) {
                 res.json({"Query" : "Failed"});

@@ -33,9 +33,9 @@
                 <div class="form-group barcode">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="Search By Barcode">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
+                                <button class="btn btn-default" type="submit" onClick="getProduct">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </div>
@@ -65,11 +65,11 @@
                     <h2>Factory Address: </h2>
                 </div>
                 <div class="col-sm-6" id="value">
-                    <h3>Prouduct Name</h3>
-                    <h3>Distance</h3>
-                    <h3>Country</h3>
-                    <h3>Name</h3>
-                    <h3>Country, State, City</h3>
+                    <h3 id="name">Prouduct Name</h3>
+                    <h3 id="miles">Distance</h3>
+                    <h3 id="country">Country</h3>
+                    <h3 id="manu">Name</h3>
+                    <h3 id="fact">Country, State, City</h3>
                 </div>
             </div>
         </div>

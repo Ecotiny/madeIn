@@ -50,5 +50,9 @@ REST.prototype.stop = function(err) {
     console.log("ISSUE WITH MYSQL n" + err);
     process.exit(1);
 }
+app.get('/',function(req,res){
 
+     res.sendFile('../web/frontend/index.html');
+
+});
 new REST();

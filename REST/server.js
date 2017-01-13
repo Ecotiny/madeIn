@@ -4,6 +4,7 @@ var bodyParser  = require("body-parser");
 var md5 = require('MD5');
 var rest = require("./REST.js");
 var app  = express();
+var path = require("path");
 
 function REST(){
     var self = this;
@@ -32,6 +33,7 @@ REST.prototype.connectMysql = function() {
 
 REST.prototype.configureExpress = function(connection) {
     var self = this;
+    app.use(express.static(path.join(__dirname, 'public')));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     var router = express.Router();
@@ -50,9 +52,9 @@ REST.prototype.stop = function(err) {
     console.log("ISSUE WITH MYSQL n" + err);
     process.exit(1);
 }
+
 app.get('/',function(req,res){
-
-     res.sendFile('../web/frontend/index.html');
-
+    res.sendFile(__dirname + '/public/index.html');
+    console.log("I got a thingy");
 });
 new REST();

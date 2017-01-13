@@ -1,10 +1,9 @@
 // public/core.js
     
-angular.module('scotchTodo', [])
+angular.module('madeIn', [])
 
     .controller('mainController', function($scope, $http) {
     $scope.barcode = {};
-    // delete a todo after checking it
     $scope.getProduct = function(barcode) {
         $http.get('/api/products:' + barcode)
             .success(function(data) {

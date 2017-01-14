@@ -7,8 +7,8 @@ angular.module('madeIn', [])
     $scope.getProduct = function(barcode) {
         $http.get('/api/products:' + barcode)
             .success(function(data) {
-                $scope.name = data;
-                console.log(data);
+                $scope.productname = data[0].name;
+                console.log(data[0].name);
             })
             .error(function(data) {
                 console.log('Error: ' + data);

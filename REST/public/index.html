@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="madeIn">
+<html lang="en" ng-app="madeIn" ng-init="productname = 3">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="alert alert-info" id="results" ng-show="clicked">
+            <div class="alert alert-info" id="results">
                 <div class="row">
                     <div class="col-sm-6">
                         <h2>Name: </h2>
@@ -69,7 +69,7 @@
                         <h2>Factory Address: </h2>
                     </div>
                     <div class="col-sm-6" id="value">
-                        <h3 id="name" ng-model="name">Product Name</h3>
+                        <h3 id="name">{{productname}}</h3>
                         <h3 id="miles">Distance</h3>
                         <h3 id="country">Country</h3>
                         <h3 id="manu">Name</h3>

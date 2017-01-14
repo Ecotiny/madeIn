@@ -1,5 +1,5 @@
 // public/core.js
-    
+var geocoder = new google.maps.Geocoder();   
 angular.module('madeIn', [])
 
     .controller('mainController', function($scope, $http) {
@@ -16,10 +16,22 @@ angular.module('madeIn', [])
                 $scope.factoryStreet = data[0].street;
                 console.log(data);
                 $scope.search=true;
+                var address = $scope.factoryStreet+","+$scope.factoryCity+","+$scope.factoryState;
+                console.log(address);
+                geocoder.geocode({'address': address}, function(results, status) {
+                if (status === 'OK') {
+                    lat = results[0].geometry.location.lat();
+                    lng = results[0].geometry.location.lng();
+                    console.log(lat);
+//                     console.log(parseResults.geometry.viewport.b.b);
+//                     console.log(parseResults.geometry.viewport.f.b);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+                });
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
     };
-
 });

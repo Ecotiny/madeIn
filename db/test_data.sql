@@ -11,7 +11,7 @@ INSERT INTO address (street, city, state, country, zip) VALUES
 INSERT INTO factory_address (idfactory, idaddress) VALUES 
 (1,1),
 (2,1);
-INSERT INTO products (name,barcode,idmanufacturer) VALUES 
+INSERT INTO products (productname,barcode,idmanufacturer) VALUES 
 ("Nandos Peri-Peri Mild Sauce", 6003770003091, 1), 
 ("Nandos Peri-Peri Extra Mild Sauce", 6003770002414, 1);
 INSERT INTO users (usersname, email, passwd) VALUES 

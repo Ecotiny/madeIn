@@ -24,7 +24,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var idvar = req.params.barcode;
         while(idvar.charAt(0) === ':')
             idvar = idvar.substr(1);
-        var query = "SELECT * FROM products JOIN manufacturer ON products.idmanufacturer=manufacturer.manuid JOIN product_factory ON products.id=product_factory.idproduct JOIN factory ON factory.factoryid=product_factory.idfactory JOIN factory_address ON factory_address.idfactory=factory.factoryid JOIN address ON factory_address.idaddress=address.id WHERE products.barcode = " + parseInt(idvar);
+        var query = "SELECT * FROM products JOIN manufacturer ON products.idmanufacturer=manufacturer.manuid JOIN product_factory ON products.id=product_factory.idproduct JOIN factory ON factory.factoryid=product_factory.idfactory JOIN factory_address ON factory_address.idfactory=factory.factoryid JOIN address ON factory_address.idaddress=address.id JOIN countries ON address.country=countries.id JOIN states ON address.state = states.id JOIN city ON address.city = city.id WHERE products.barcode = " + parseInt(idvar);
         console.log("get products by barcode: " + query);
         connection.query(query,function(err,rows){
             res.json(rows);

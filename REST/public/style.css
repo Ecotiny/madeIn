@@ -19,8 +19,12 @@ h1 {
 .categorydrop {
     width: 50%;
 }
-
-
+br {
+    padding: 1%;
+}
+.address {
+    padding-bottom: 0.7%
+}
 h3 {
     padding-bottom: 1.5%;
 }

@@ -9,14 +9,14 @@ USE 'madeIn';
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`city` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(30) NOT NULL,
+    `cityname` VARCHAR(30) NOT NULL,
     `stateid` INT(11) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 
 
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (1, 'Bombuflat', 1),
 (2, 'Garacharma', 1),
 (3, 'Port Blair', 1),
@@ -2338,7 +2338,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (2319, 'Mauganj', 21),
 (2320, 'Meghnagar', 21),
 (2321, 'Mehara Gaon', 21);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (2322, 'Mehgaon', 21),
 (2323, 'Mhaugaon', 21),
 (2324, 'Mhow', 21),
@@ -4496,7 +4496,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (4476, 'Mandamarri', 36),
 (4477, 'Manuguru', 36),
 (4478, 'Medak', 36);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (4479, 'Medchal', 36),
 (4480, 'Miryalaguda', 36),
 (4481, 'Nagar Karnul', 36),
@@ -6647,7 +6647,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (6626, 'Gladstone', 269),
 (6627, 'Gold Coast', 269),
 (6628, 'Gowrie Junction', 269);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (6629, 'Gympie', 269),
 (6630, 'Helensvale', 269),
 (6631, 'Hervey Bay', 269),
@@ -8272,7 +8272,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (8250, 'Ramotlabaki', 500),
 (8251, 'Rasesa', 500),
 (8252, 'Sikwane', 500),
-(8253, 'Boatlaname', 501),
+(8253, 'Boatlacityname', 501),
 (8254, 'Botlhapatlou', 501),
 (8255, 'Diagane', 501),
 (8256, 'Diphudugodu', 501),
@@ -8295,7 +8295,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (8273, 'Khekhenya-Chepetese', 501),
 (8274, 'Khudumelapye', 501),
 (8275, 'Kopong', 501),
-(8276, 'Kotolaname', 501),
+(8276, 'Kotolacityname', 501),
 (8277, 'Kubung', 501),
 (8278, 'Kumakwane', 501),
 (8279, 'Kweneng', 501),
@@ -8740,7 +8740,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (8718, 'Ibicarai', 516),
 (8719, 'Ibicui', 516),
 (8720, 'Ibipeba', 516);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (8721, 'Ibirapitanga', 516),
 (8722, 'Ibirataia', 516),
 (8723, 'Ibotirama', 516),
@@ -10738,7 +10738,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (10715, 'Saint-Cesaire', 673),
 (10716, 'Saint-Cyrill-de-Wendover', 673),
 (10717, 'Saint-Damase', 673);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (10718, 'Saint-Damien-de-Buckland', 673),
 (10719, 'Saint-Denis', 673),
 (10720, 'Saint-Donat-de-Montcalm', 673),
@@ -12841,7 +12841,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (12817, 'San Mateo', 781),
 (12818, 'San Miguel de Sema', 781),
 (12819, 'San Pablo de Borbur', 781);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (12820, 'Santa Maria', 781),
 (12821, 'Santa Rosa de Viterbo', 781),
 (12822, 'Santa Sofia', 781),
@@ -13036,7 +13036,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (13011, 'Sipi', 787),
 (13012, 'Tado', 787),
 (13013, 'Unguia', 787),
-(13014, 'Union Panamericana', 787),
+(13014, 'Union Pacitynamericana', 787),
 (13015, 'Ayapel', 788),
 (13016, 'Buenavista', 788),
 (13017, 'Canalete', 788),
@@ -14871,7 +14871,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (14846, 'Duchcov', 936),
 (14847, 'Jilove', 936),
 (14848, 'Jirkov', 936);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (14849, 'Kadan', 936),
 (14850, 'Klasterec nad Ohri', 936),
 (14851, 'Krupka', 936),
@@ -16220,7 +16220,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (16194, 'Poldeotsa', 1111),
 (16195, 'Pootsi', 1111),
 (16196, 'Pulli', 1111),
-(16197, 'Rannametsa', 1111),
+(16197, 'Rancitynametsa', 1111),
 (16198, 'Ratsepa', 1111),
 (16199, 'Reiu', 1111),
 (16200, 'Ridalepa', 1111),
@@ -16932,7 +16932,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (16906, 'Laukaa', 1161),
 (16907, 'Lieto', 1161),
 (16908, 'Anjalankoski', 1162);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (16909, 'Hamina', 1162),
 (16910, 'Kotka', 1162),
 (16911, 'Kouvola', 1162),
@@ -18774,7 +18774,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (18747, 'Amberg', 1357),
 (18748, 'Amerang', 1357),
 (18749, 'Ansbach', 1357);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (18750, 'Aschaffenburg', 1357),
 (18751, 'Augsburg', 1357),
 (18752, 'Bad Aibling', 1357),
@@ -20703,7 +20703,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (20675, 'Tasiusaq', 1491),
 (20676, 'Upernavik', 1491),
 (20677, 'Upernavik Kujalleq', 1491);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (20678, 'Ikerasak', 1492),
 (20679, 'Illorsuit', 1492),
 (20680, 'Niaqornat', 1492),
@@ -21394,7 +21394,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (21365, 'Tiszavasvari', 1652),
 (21366, 'Tuzser', 1652),
 (21367, 'Vaja', 1652),
-(21368, 'Vasarosnameny', 1652),
+(21368, 'Vasaroscitynameny', 1652),
 (21369, 'Zahony', 1652),
 (21370, 'Bataszek', 1653),
 (21371, 'Bonyhad', 1653),
@@ -22614,7 +22614,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (22585, 'Montazzoli', 1826),
 (22586, 'Montebello sul Sangro', 1826),
 (22587, 'Monteferrante', 1826);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (22588, 'Montelapiano', 1826),
 (22589, 'Montenerodomo', 1826),
 (22590, 'Monteodorisio', 1826),
@@ -24191,7 +24191,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (24161, 'Taketoyo', 1918),
 (24162, 'Togo', 1918),
 (24163, 'Tokai', 1918),
-(24164, 'Tokoname', 1918),
+(24164, 'Tokocityname', 1918),
 (24165, 'Toyoake', 1918),
 (24166, 'Toyohashi', 1918),
 (24167, 'Toyokawa', 1918),
@@ -24490,7 +24490,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (24460, 'Ono', 1930),
 (24461, 'Sanda', 1930),
 (24462, 'Sasayama', 1930);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (24463, 'Sumoto', 1930),
 (24464, 'Taishi', 1930),
 (24465, 'Takarazuka', 1930),
@@ -26505,7 +26505,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (26474, 'Olingen', 2236),
 (26475, 'Rodenbourg', 2236),
 (26476, 'Roodt-sur-Syr', 2236);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (26477, 'Wasserbillig', 2236),
 (26478, 'Wecker', 2236),
 (26479, 'Wecker-Gare', 2236),
@@ -28384,7 +28384,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (28352, 'Temamatla', 2442),
 (28353, 'Temascalapa', 2442),
 (28354, 'Temascalcingo', 2442);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (28355, 'Temoaya', 2442),
 (28356, 'Tenancingo', 2442),
 (28357, 'Tenango de Arista', 2442),
@@ -29254,7 +29254,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (29221, 'Cerro Azul', 2457),
 (29222, 'Chacaltianguis', 2457),
 (29223, 'Chicontepec', 2457),
-(29224, 'Chinameca', 2457),
+(29224, 'Chicitynameca', 2457),
 (29225, 'Chinampa', 2457),
 (29226, 'Chocaman', 2457),
 (29227, 'Citlaltepetl', 2457),
@@ -30287,7 +30287,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (30254, 'Wormerland', 2594),
 (30255, 'Wormerveer', 2594),
 (30256, 'Zaandam', 2594);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (30257, 'Zaanstad', 2594),
 (30258, 'Zandvoort', 2594),
 (30259, 'Zeevang', 2594),
@@ -32271,7 +32271,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (32237, 'Bangued', 2844),
 (32238, 'Davao', 2845),
 (32239, 'Dagupan', 2848);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (32240, 'Laoag', 2848),
 (32241, 'Manaoag', 2848),
 (32242, 'Mangaldan', 2848),
@@ -34229,7 +34229,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (34194, 'Bucsani', 2950),
 (34195, 'Butimanu', 2950),
 (34196, 'Candesti', 2950);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (34197, 'Ciocanesti', 2950),
 (34198, 'Cobia', 2950),
 (34199, 'Cojasca', 2950),
@@ -36136,7 +36136,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (36100, 'Narimanov', 2983),
 (36101, 'Verhnij Baskunchak', 2983),
 (36102, 'Volodarskij', 2983),
-(36103, 'Znamensk', 2983),
+(36103, 'Zcitynamensk', 2983),
 (36104, 'Agidel', 2984),
 (36105, 'Bajmak', 2984),
 (36106, 'Belebej', 2984),
@@ -36196,7 +36196,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (36160, 'Pochjop', 2986),
 (36161, 'Pogar', 2986),
 (36162, 'Selco', 2986);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (36163, 'Starodub', 2986),
 (36164, 'Surazh', 2986),
 (36165, 'Suzjomka', 2986),
@@ -36455,7 +36455,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (36418, 'Svetlogorsk', 3006),
 (36419, 'Svetlyj', 3006),
 (36420, 'Zeljenogradsk', 3006),
-(36421, 'Znamensk', 3006),
+(36421, 'Zcitynamensk', 3006),
 (36422, 'Elista', 3007),
 (36423, 'Gorodovikovsk', 3007),
 (36424, 'Lagan', 3007),
@@ -36843,7 +36843,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (36806, 'Livny', 3041),
 (36807, 'Mcensk', 3041),
 (36808, 'Orjol', 3041),
-(36809, 'Znamenka', 3041),
+(36809, 'Zcitynamenka', 3041),
 (36810, 'Bashmakovo', 3042),
 (36811, 'Bekovo', 3042),
 (36812, 'Belinskiy', 3042),
@@ -37185,7 +37185,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (37148, 'Tambov', 3059),
 (37149, 'Uvarovo', 3059),
 (37150, 'Zherdevka', 3059),
-(37151, 'Znamenka', 3059),
+(37151, 'Zcitynamenka', 3059),
 (37152, 'Agryz', 3060),
 (37153, 'Aksubajevo', 3060),
 (37154, 'Aktjubinskij', 3060),
@@ -38132,7 +38132,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (38095, 'Soekmekaar', 3244),
 (38096, 'Southdale', 3244),
 (38097, 'Thabazimbi', 3244);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (38098, 'Thohoyandou', 3244),
 (38099, 'Thulamahashe', 3244),
 (38100, 'Tzaneen', 3244),
@@ -40063,7 +40063,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (40025, 'Quballat', 3634),
 (40026, 'Tabursuq', 3634),
 (40027, 'Tastur', 3634);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (40028, 'Zahrat Madina', 3634),
 (40029, 'al-Ma''qulah', 3634),
 (40030, '''Awsajah', 3636),
@@ -42031,7 +42031,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (41992, 'Westhoughton', 3842),
 (41993, 'Weston-super-Mare', 3842),
 (41994, 'Weymouth', 3842);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (41995, 'Whitefield', 3842),
 (41996, 'Whitehaven', 3842),
 (41997, 'Whitley Bay', 3842),
@@ -43915,7 +43915,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (43875, 'Spring Hill', 3930),
 (43876, 'Stuart', 3930),
 (43877, 'Sun City Center', 3930);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (43878, 'Sunny Isles', 3930),
 (43879, 'Sunrise', 3930),
 (43880, 'Sunset', 3930),
@@ -45816,7 +45816,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (45775, 'Springfield', 3959),
 (45776, 'Steubenville', 3959),
 (45777, 'Stow', 3959);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (45778, 'Streetsboro', 3959),
 (45779, 'Strongsville', 3959),
 (45780, 'Struthers', 3959),
@@ -47616,7 +47616,7 @@ INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
 (47574, 'Redcliffe', 4120),
 (47575, 'Shurugwi', 4120),
 (47576, 'Zvishavane', 4120);
-INSERT INTO `madeIn`.`city` (`id`, `name`, `stateid`) VALUES
+INSERT INTO `madeIn`.`city` (`id`, `cityname`, `stateid`) VALUES
 (47577, 'Manchester', 3952),
 (47578, 'Nashua', 3952),
 (47579, 'Concord', 3952),

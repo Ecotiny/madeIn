@@ -1,6 +1,6 @@
 # The first target will be the default
 
-SQL_OPTS=-u root 
+SQL_OPTS=-u root -p
 # The password has to be set using
 # mysql_config_editor set -p
 # This must be done before issuing commands

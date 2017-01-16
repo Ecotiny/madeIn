@@ -14,7 +14,7 @@ angular.module('madeIn', [])
                 $scope.factoryCity = data[0].cityname;
                 $scope.factoryState = data[0].statename;
                 $scope.factoryStreet = data[0].street;
-                $scope.distance = 0;
+                $scope.distance = "Loading...";
                 console.log(data);
                 $scope.search=true;
                 address = $scope.factoryStreet+","+$scope.factoryCity+","+$scope.factoryState;
@@ -25,8 +25,9 @@ angular.module('madeIn', [])
                         if (status === 'OK') {
                             lat = results[0].geometry.location.lat();
                             lng = results[0].geometry.location.lng();
+			    console.log(position.coords.latitude);
                             $scope.$apply(function(){
-                                $scope.distance = distance(lat,lng, position.coords.latitude, position.coords.longitude);
+                                $scope.distance = parseInt(distance(lat,lng, position.coords.latitude, position.coords.longitude)) + " km";
                             });
                             
                         } else {

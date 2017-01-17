@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="madeIn" ng-init="search=false">
+<html lang="en" ng-app="madeIn" ng-init="$scope.search=false">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,20 +59,21 @@
                     </div>
                 </div>
             </div> 
-            <div class="alert alert-info" id="results" ng-show="search">
+            <div class="alert alert-info alert-dismissable" id="results" ng-show="search">
+                <a class="closeit" ng-click="showResults()">&times;</a>
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Name: </h2>
-                        <h2>Food Kilometers: </h2>
-                        <h2>Made In: </h2>
-                        <h2>Manufacturer: </h2>
-                        <h2>Factory Address: </h2>
+                        <h2 id="name">Name: </h2>
+                        <h2 id="miles">(est) Distance Traveled: </h2>
+                        <h2 id="country">Made In: </h2>
+                        <h2 id="manu">Manufacturer: </h2>
+                        <h2 id="address">Factory Address: </h2>
                     </div>
                     <div class="col-sm-6" id="value">
-                        <h3 id="name">{{productname}}</h3>
-                        <h3 id="miles">{{distance}}</h3>
-                        <h3 id="country">{{factoryCount}}</h3>
-                        <h3 id="manu">{{manuname}}</h3>
+                        <h3>{{productname}}</h3>
+                        <h3>{{distance}}</h3>
+                        <h3>{{factoryCount}}</h3>
+                        <h3>{{manuname}}</h3>
                         <h3 class="address">{{factoryStreet}},</h3>
                         <h3 class="address">{{factoryCity}},</h3>
                         <h3 class="address">{{factoryState}},</h3>

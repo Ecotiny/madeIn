@@ -6,7 +6,7 @@
 }
 
 h1 {
-    font-size:110px;
+    font-size:750%;
     text-align: center;
     padding: 7%;
 }
@@ -19,12 +19,26 @@ h1 {
 .categorydrop {
     width: 50%;
 }
-br {
-    padding: 1%;
-}
 .address {
     padding-bottom: 0.7%
 }
 h3 {
     padding-bottom: 1.5%;
+}
+.closeit:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+.name {
+  padding-top: 50px;
+}
+#name {
+}
+#miles {
+}
+#country {
+}
+#manu {
+}
+#address {
 }

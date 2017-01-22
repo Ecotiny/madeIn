@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="madeIn" ng-init="$scope.search=false">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MadeIn | Login</title>
+    <script src="jquery3_1_1.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWhZSLXVmqoQ1VLVTnSB1CwnR2_1E3uIo"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Google Identity Platform -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="AIzaSyAWhZSLXVmqoQ1VLVTnSB1CwnR2_1E3uIo.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body ng-controller="mainController">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#"><span class="made">made</span><span class="in">In</span></a>
+            </div>
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+        </div>
+    <script src="js/core.js"></script> <!-- load our main application -->
+  </body>
+</html>

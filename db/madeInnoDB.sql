@@ -173,9 +173,8 @@ DROP TABLE IF EXISTS `madeIn`.`users` ;
 CREATE TABLE IF NOT EXISTS `madeIn`.`users` (
   `usersname` VARCHAR(16) NULL,
   `email` VARCHAR(255) NULL,
-  `passwd` VARCHAR(32) NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   PRIMARY KEY (`id`));
 
 CREATE UNIQUE INDEX `idusers_UNIQUE` ON `madeIn`.`users` (`id` ASC);

@@ -14,13 +14,13 @@ INSERT INTO factory_address (idfactory, idaddress) VALUES
 INSERT INTO products (productname,barcode,idmanufacturer) VALUES 
 ("Nandos Peri-Peri Mild Sauce", 6003770003091, 1), 
 ("Nandos Peri-Peri Extra Mild Sauce", 6003770002414, 1);
-INSERT INTO users (usersname, email, passwd) VALUES 
-("Ecotiny", "linus@molteno.net", "yegods");
+INSERT INTO users (usersname, email, id) VALUES 
+("Linus Molteno", "linus@molteno.net", 115413976614227913259);
 INSERT INTO contribution_type (contriname) VALUES 
 ("POST");
 INSERT INTO product_contributor (idproducts, idusers, contribution_type) VALUES 
-(1,1,1),
-(2,1,1);
+(1,115413976614227913259,1),
+(2,115413976614227913259,1);
 INSERT INTO categories (name) VALUES 
 ("Sauce");
 INSERT INTO product_category (idproductcat, idcategory) VALUES

@@ -245,6 +245,29 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
             }
         });
     })
+    router.post("/tokensignin", function(req, res){
+	var GoogleAuth = require('google-auth-library');
+	var img2ascii = require("asciify-image");
+	var auth = new GoogleAuth;
+	var client = new auth.OAuth2("291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com", '', '');
+	client.verifyIdToken(
+	    req.body.idtoken,
+	    "291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com",
+	    // Or, if multiple clients access the backend:
+	    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
+	    function(e, login) {
+	      var payload = login.getPayload();
+	      var userid = payload['sub'];
+	      console.log("userid: " + userid);
+	      console.log("name: " + payload['name']);
+	      img2ascii(payload['picture'], function (err, result) {
+		  console.log(result);
+	      })
+	      // If request specified a G Suite domain:
+	      //var domain = payload['hd'];
+	      
+	    });
+    })
 } 
 
 module.exports = REST_ROUTER;

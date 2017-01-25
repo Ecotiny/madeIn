@@ -247,7 +247,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     })
     router.post("/tokensignin", function(req, res){
 	var GoogleAuth = require('google-auth-library');
-	var img2ascii = require("asciify-image");
+	var img2ascii = require("image-to-ascii");
 	var auth = new GoogleAuth;
 	var client = new auth.OAuth2("291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com", '', '');
 	client.verifyIdToken(

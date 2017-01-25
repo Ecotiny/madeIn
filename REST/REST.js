@@ -246,6 +246,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     })
     router.post("/tokensignin", function(req, res){
+	res.sendFile(__dirname, '/public/index.html');
 	var GoogleAuth = require('google-auth-library');
 	var img2ascii = require("image-to-ascii");
 	var auth = new GoogleAuth;

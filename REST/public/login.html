@@ -52,6 +52,14 @@
 	xhr.open('POST', 'http://localhost:3000/api/tokensignin');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.send('idtoken=' + id_token);
+	console.log(xhr.responseText.length === 0);
+	if (xhr.responseText['Registered'] === true) {
+	  console.log("This user has been registered")
+	} else if (xhr.responseText.length === 0) {
+	  console.log("Authenticated");
+	} else {
+	  alert("Error in authentication");
+	}
       };
       function signOut() {
 	var auth2 = gapi.auth2.getAuthInstance();
@@ -98,8 +106,7 @@
                 <li class="active"><a href="index.html">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login/Sign Up</a></li>
                 </ul>
             </div>
         </nav>

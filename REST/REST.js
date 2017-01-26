@@ -272,17 +272,18 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 		  var query1 = "INSERT INTO users (usersname, email, usersid) VALUES ( ?, ?, ?)"
 		  var table1 = [payload['name'], payload['email'], userid];
 		  query1 = mysql.format(query1, table1);
-		  console.log(query1);
 		  connection.query(query1, function(err,rows) {
 		    if (err) {
 		      console.log(err);
+		      res.json({"Registered" : false});
 		    } else {
 		      console.log("User now registered");
-		    }  
+		      res.json({"Registered" : true});
+		    }
 		  })
 		} else {
 		  console.log("Registered");
-
+		  res.sendFile(__dirname, "/public/index.html");
 		}
 	      })
 	      // If request specified a G Suite domain:

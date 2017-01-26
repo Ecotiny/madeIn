@@ -174,10 +174,10 @@ CREATE TABLE IF NOT EXISTS `madeIn`.`users` (
   `usersname` VARCHAR(16) NULL,
   `email` VARCHAR(255) NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `id` INT NOT NULL,
-  PRIMARY KEY (`id`));
+  `usersid` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`usersid`));
 
-CREATE UNIQUE INDEX `idusers_UNIQUE` ON `madeIn`.`users` (`id` ASC);
+CREATE UNIQUE INDEX `idusers_UNIQUE` ON `madeIn`.`users` (`usersid` ASC);
 
 
 -- -----------------------------------------------------
@@ -199,11 +199,11 @@ DROP TABLE IF EXISTS `madeIn`.`product_contributor` ;
 
 CREATE TABLE IF NOT EXISTS `madeIn`.`product_contributor` (
   `idproducts` INT NULL,
-  `idusers` INT NOT NULL,
+  `idusers` VARCHAR(255) NOT NULL,
   `contribution_type` INT NULL,
   CONSTRAINT `fk_product_contributor_users1`
     FOREIGN KEY (`idusers`)
-    REFERENCES `madeIn`.`users` (`id`)
+    REFERENCES `madeIn`.`users` (`usersid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_contributor_products1`

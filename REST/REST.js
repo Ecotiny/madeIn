@@ -32,7 +32,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     });
     router.put("/products", function(req,res){
         var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor (idproduct, iduser, contribution_type) VALUES (?,?,?)";
-        var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman), parseInt(req.body.[somewayofidentifyingproduct]), parseInt(req.body.user), parseInt(req.body.conttype);
+        var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman), parseInt(req.body.somewayofidentifyingproduct), parseInt(req.body.user), parseInt(req.body.conttype)];
         query = mysql.format(query,tables);
         console.log("put products: " + query);
         console.log(parseInt(req.body.barcode));
@@ -261,8 +261,29 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	      var userid = payload['sub'];
 	      console.log("userid: " + userid);
 	      console.log("name: " + payload['name']);
+	      var query = "SELECT * FROM users WHERE usersid = " + userid;
 	      img2ascii(payload['picture'], function (err, result) {
 		  console.log(result);
+	      })
+	      connection.query(query, function(err,rows){
+		console.log(Object.keys(rows).length);
+		if (Object.keys(rows).length === 0) {
+		  console.log("User not registered");
+		  var query1 = "INSERT INTO users (usersname, email, usersid) VALUES ( ?, ?, ?)"
+		  var table1 = [payload['name'], payload['email'], userid];
+		  query1 = mysql.format(query1, table1);
+		  console.log(query1);
+		  connection.query(query1, function(err,rows) {
+		    if (err) {
+		      console.log(err);
+		    } else {
+		      console.log("User now registered");
+		    }  
+		  })
+		} else {
+		  console.log("Registered");
+
+		}
 	      })
 	      // If request specified a G Suite domain:
 	      //var domain = payload['hd'];

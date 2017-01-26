@@ -31,8 +31,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         });
     });
     router.put("/products", function(req,res){
-        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor (idproduct, iduser, contribution_type) VALUES";
-        var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman)];
+        var query = "INSERT INTO products(name,barcode,idmanufacturer) VALUES (?,?,?); INSERT INTO product_contributor (idproduct, iduser, contribution_type) VALUES (?,?,?)";
+        var tables = [req.body.name,parseInt(req.body.barcode), parseInt(req.body.idman), parseInt(req.body.[somewayofidentifyingproduct]), parseInt(req.body.user), parseInt(req.body.conttype);
         query = mysql.format(query,tables);
         console.log("put products: " + query);
         console.log(parseInt(req.body.barcode));

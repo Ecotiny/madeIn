@@ -1,10 +1,12 @@
 // public/core.js
 var geocoder = new google.maps.Geocoder();   
 var address;
-angular.module('madeIn', [])
+angular.module('madeIn', ['ngSanitize'])
 
     .controller('mainController', function($scope, $http) {
     $scope.barcode = '';
+    $scope.login = '<a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login/Sign Up</a>'
+    console.log($scope.login);
     $scope.getProduct = function(barcode) {
         $http.get('/api/products:' + barcode)
             .success(function(data) {

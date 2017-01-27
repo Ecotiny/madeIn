@@ -266,7 +266,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 		  console.log(result);
 	      })
 	      connection.query(query, function(err,rows){
-		console.log(Object.keys(rows).length);
 		if (Object.keys(rows).length === 0) {
 		  console.log("User not registered");
 		  var query1 = "INSERT INTO users (usersname, email, usersid) VALUES ( ?, ?, ?)"
@@ -283,7 +282,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 		  })
 		} else {
 		  console.log("Registered");
-		  res.sendFile(__dirname, "/public/index.html");
 		}
 	      })
 	      // If request specified a G Suite domain:

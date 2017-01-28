@@ -1,0 +1,40 @@
+<html lang="en" ng-app="profile" ng-init="$scope.search=false">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MadeIn | Login</title>
+    <script src="jquery3_1_1.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWhZSLXVmqoQ1VLVTnSB1CwnR2_1E3uIo"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+    <!-- Google Identity Platform -->
+    <meta name="google-signin-scope" content="profile email">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com">
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body ng-controller="notMain">
+      <script src="js/profile.js"></script>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span class="made">made</span><span class="in">In</span></a>
+            </div>
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-bind-html="login">{{login}}</li>
+                </ul>
+            </div>
+        </nav>
+        <h1>{{nameOfUser}}</h1>
+  </body>
+</html>

@@ -76,10 +76,8 @@ angular.module('madeIn', ['ngSanitize'])
             }
 	);
     };
-    $scope.showResults = function() {
-	$scope.$apply(function(){
-	    $scope.search = false;
-	});
+    $scope.closeResults = function() {
+	$scope.search = false;
     };
 });
     

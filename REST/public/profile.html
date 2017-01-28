@@ -1,4 +1,4 @@
-<html lang="en" ng-app="profile" ng-init="$scope.search=false">
+<html lang="en" ng-app="profile">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
     <link href="style.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
-  <body ng-controller="notMain">
+  <body ng-controller="notMain" class="profile">
       <script src="js/profile.js"></script>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -35,6 +35,8 @@
                 </ul>
             </div>
         </nav>
+        <div ng-bind-html="imageofprofile">{{imageofprofile}}</div>
         <h1>{{nameOfUser}}</h1>
+	<h2>{{level}}</h2>
   </body>
 </html>

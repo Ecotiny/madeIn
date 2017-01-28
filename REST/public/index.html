@@ -61,7 +61,6 @@
                 </div>
             </div> 
             <div class="alert alert-info alert-dismissable" id="results" ng-show="search">
-                <a class="closeit" ng-click="showResults()">&times;</a>
                 <div class="row">
                     <div class="col-sm-6">
                         <h2 id="name">Name: </h2>
@@ -80,6 +79,7 @@
                         <h3 class="address">{{factoryState}},</h3>
                         <h3 class="address">{{factoryCount}}</h3>
                     </div>
+                    <h4 ng-click="closeResults()">Close</h4>
                 </div>
             </div>
         </div>

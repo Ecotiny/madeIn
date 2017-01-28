@@ -223,28 +223,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //---------------------USER-----------------------
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    router.get("/user", function(req, res){
-        var query = "SELECT * FROM users";
-        console.log("get users: " + query);
-        connection.query(query, function(err,rows){
-            res.json(rows);
-        })
-    })
-    router.put("/user", function(req, res){
-        var query = "INSERT INTO users (usersname, email, passwd) VALUES (?,?,?)";
-        var tables = [req.body.username, req.body.email, md5(req.body.password)];
-        query = mysql.format(query, tables);
-        console.log("put users" + query);
-        connection.query(query, function(err, rows){
-            if (err) {
-                console.log("ERROR");
-                res.json({"error" : "YEP"});
-            } else {
-                console.log("NO ERROR");
-                res.json({"error" : "Nope"});
-            }
-        });
-    })
     router.post("/tokensignin", function(req, res){
 	res.sendFile(__dirname, '/public/index.html');
 	var GoogleAuth = require('google-auth-library');
@@ -289,6 +267,19 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	      
 	    });
     })
+    router.get("/user/level:email", function(req,res){
+        var idvar = req.params.email;
+        while(idvar.charAt(0) === ':')
+            idvar = idvar.substr(1);
+        var query = "SELECT * FROM product_contributor JOIN users ON product_contributor.idusers=users.usersid WHERE users.email = ?";
+	var tables = [idvar]
+	query = mysql.format(query, tables)
+        console.log(query);
+        connection.query(query, function(err, rows){
+            res.json(rows.length);
+	    console.log(rows);
+        })
+    });
 } 
 
 module.exports = REST_ROUTER;

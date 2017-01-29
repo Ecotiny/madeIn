@@ -3,6 +3,7 @@ function onLoad() {
         gapi.auth2.init();
     });
 }
+
 angular.module('profile', ['ngSanitize'])
 
 	.controller('notMain', function($scope, $http) {
@@ -13,7 +14,7 @@ angular.module('profile', ['ngSanitize'])
 	    xmlHttp.open("GET", 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + readCookie("id_token"), false); // true for asynchronous 
 	    xmlHttp.send(null);
 	    eval('var obj='+xmlHttp.responseText);
-	    $scope.login = "<a href='profile.html'>" + obj.name + "</a>";
+	    $scope.login = "<a href='profile'>" + obj.name + "</a>";
 	    $scope.nameOfUser = obj.name;
 	    $scope.imageofprofile = "<img src='" + obj.picture + "' style='position:relative; left:46%; right:46%; border-radius: 25px; width:8%; height: 16%; border:3px;' />";
 	    console.log($scope.imageofprofile);
@@ -21,7 +22,7 @@ angular.module('profile', ['ngSanitize'])
 	    var xmlRequestLevel = new XMLHttpRequest();
 	    xmlRequestLevel.open("GET", 'http://localhost:3000/api/user/level:' + obj.email, false); // true for asynchronous 
 	    xmlRequestLevel.send(null);
-	    eval('objlvl='+xmlRequestLevel.responseText);
+	    eval('var objlvl='+xmlRequestLevel.responseText);
 	    if (objlvl === 0) {
 	      $scope.level = "User: No contributions"
 	    } else if (objlvl => 1 && objlvl < 20) {

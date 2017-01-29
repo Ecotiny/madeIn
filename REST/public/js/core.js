@@ -6,16 +6,15 @@ angular.module('madeIn', ['ngSanitize'])
 
     .controller('mainController', function($scope, $http) {
     $scope.barcode = '';
-    console.log(readCookie("id_token"));
     if (readCookie("id_token")) {
 
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open("GET", 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + readCookie("id_token"), false); // true for asynchronous 
       xmlHttp.send(null);
       eval('obj='+xmlHttp.responseText);
-      $scope.login = "<a href='profile.html'>" + obj.name + "</a>";
+      $scope.login = "<a href='profile'>" + obj.name + "</a>";
     } else {
-      $scope.login = '<a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login/Sign Up</a>'
+      $scope.login = '<a href="login"><span class="glyphicon glyphicon-log-in"></span> Login/Sign Up</a>'
     }
     console.log($scope.login);
     $scope.getProduct = function(barcode) {

@@ -45,7 +45,6 @@ window.fbAsyncInit = function() {
 	auth2.signOut().then(function () {
 	  eraseCookie("id_token");
           console.log('User signed out.');
-          window.location = "http://localhost:3000";
 	});
       }
       (function(d, s, id){

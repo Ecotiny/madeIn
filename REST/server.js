@@ -57,4 +57,12 @@ app.get('/',function(req,res){
     res.sendFile(__dirname + '/public/index.html');
     console.log("I got a thingy");
 });
+app.get('/login',function(req,res){
+    res.sendFile(__dirname + '/public/login.html');
+    console.log("I got a thingy");
+});
+app.get('/profile',function(req,res){
+    res.sendFile(__dirname + '/public/profile.html');
+    console.log("I got a thingy");
+});
 new REST();

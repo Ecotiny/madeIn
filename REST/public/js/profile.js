@@ -1,3 +1,8 @@
+function onLoad() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    });
+}
 angular.module('profile', ['ngSanitize'])
 
 	.controller('notMain', function($scope, $http) {
@@ -33,8 +38,25 @@ angular.module('profile', ['ngSanitize'])
 	  } else {
 	    alert("dis shiz is fking trash dawg");
 	  }
+	  $scope.signOut = function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    eraseCookie("id_token");
+                    console.log('User signed out.');
+                    window.location = "http://localhost:3000";
+                });
+            }
 	  console.log($scope.login);
 });
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
 function readCookie(name) {
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');

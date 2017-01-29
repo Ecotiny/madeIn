@@ -1,17 +1,19 @@
+<!DOCTYPE html>
 <html lang="en" ng-app="profile">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>MadeIn | Login</title>
+    <title>MadeIn | Profile</title>
     <script src="jquery3_1_1.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWhZSLXVmqoQ1VLVTnSB1CwnR2_1E3uIo"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
     <!-- Google Identity Platform -->
     <meta name="google-signin-scope" content="profile email">
-    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
     <meta name="google-signin-client_id" content="291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
@@ -21,7 +23,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body ng-controller="notMain" class="profile">
-      <script src="js/profile.js"></script>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -38,5 +39,6 @@
         <div ng-bind-html="imageofprofile">{{imageofprofile}}</div>
         <h1>{{nameOfUser}}</h1>
 	<h2>{{level}}</h2>
+	<h3 ng-click="signOut();">Sign Out</h3>
   </body>
 </html>

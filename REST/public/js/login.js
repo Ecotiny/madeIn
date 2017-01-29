@@ -31,11 +31,11 @@ window.fbAsyncInit = function() {
 	if (xhr.responseText['Registered'] === true) {
 	  console.log("This user has been registered");
 	  window.location = "http://localhost:3000";
-	  document.cookie = "id_token=" + id_token + "; path=/;"
+	  createCookie("id_token", id_token)
 	} else if (xhr.responseText.length === 0) {
 	  console.log("Authenticated");
 	  window.location = "http://localhost:3000";
-	  document.cookie = "id_token=" + id_token + "; path=/;"
+	  createCookie("id_token", id_token)
 	} else {
 	  alert("Error in authentication");
 	}
@@ -43,7 +43,9 @@ window.fbAsyncInit = function() {
       function signOut() {
 	var auth2 = gapi.auth2.getAuthInstance();
 	auth2.signOut().then(function () {
-	  console.log('User signed out.');
+	  eraseCookie("id_token");
+          console.log('User signed out.');
+          window.location = "http://localhost:3000";
 	});
       }
       (function(d, s, id){
@@ -74,3 +76,26 @@ window.fbAsyncInit = function() {
 	}
 	});
       }
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}

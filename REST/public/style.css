@@ -39,6 +39,7 @@ h4 {
 h3 {
     padding-bottom: 1.5%;
 }
+
 h4:hover {
   text-decoration: underline;
   cursor: pointer;

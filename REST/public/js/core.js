@@ -23,60 +23,64 @@ angular.module('madeIn', ['ngSanitize'])
     $scope.getProduct = function(barcode) {
         $http.get('/api/products:' + barcode)
             .success(function(data) {
-	      if (typeof data[0] != "undefined") {
-		console.log("registered product");
-                $scope.name =
-                $scope.miles = 
-                $
-                $scope.productname = data[0].productname;
-                $scope.factoryCount = data[0].countryname;
-                $scope.manuname = data[0].manufacturername;
-                $scope.factoryCity = data[0].cityname;
-                $scope.factoryState = data[0].statename;
-                $scope.factoryStreet = data[0].street;
-                $scope.distance = "Loading...";
-                $scope.search=true;
-		if (typeof $scope.factoryStreet === "undefined") {
-		  $scope.factoryStreet = "";
-		}
-		if (typeof $scope.factoryCity === "undefined") {
-		  $scope.factoryCity = "";
-		}
-		if (typeof $scope.factoryState === "undefined") {
-		  $scope.factoryState = "";
-		}
-		if (typeof $scope.factoryCount === "undefined") {
-		  $scope.factoryCount = "";
-		}
-                address = $scope.factoryStreet+","+$scope.factoryCity+","+$scope.factoryState+","+ $scope.factoryCount;
-		console.log(address);
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        geocoder.geocode({'address': address}, function(results, status) {
-                        if (status === 'OK') {
-                            lat = results[0].geometry.location.lat();
-                            lng = results[0].geometry.location.lng();
-                            $scope.$apply(function(){
-                                $scope.distance = parseInt(distance(lat,lng, position.coords.latitude, position.coords.longitude)) + " km";
-                            });           
-                        } else {
-                            alert('Geocode was not successful for the following reason: ' + status);
-                        }
-                        });
-                    });
-                } else { 
-                    console.log("Geolocation is not supported by this browser.");
-		    $scope.$apply(function(){
-		      $scope.distance = "Your browser does not support geolocation";
-                    });
-                }
-	      } else {
-		console.log("unregistered product");
-		alert("UNREGISTERED");
+				if (typeof data[0] != "undefined") {
+					console.log("registered product");
+					$scope.name = "Name: ";
+					$scope.miles = "(est.) Distance Travelled: ";
+					$scope.country = "Made In: ";
+					$scope.manu = "Manufacturer: "
+					$scope.address = "Factory Address: ";
+					$scope.productname = data[0].productname;
+					$scope.factoryCount = data[0].countryname;
+					$scope.manuname = data[0].manufacturername;
+					$scope.factoryCity = data[0].cityname;
+					$scope.factoryState = data[0].statename;
+					$scope.factoryStreet = data[0].street;
+					$scope.distance = "Loading...";
+					$scope.search=true;
+					if (typeof $scope.factoryStreet === "undefined") {
+					$scope.factoryStreet = "";
+					}
+					if (typeof $scope.factoryCity === "undefined") {
+					$scope.factoryCity = "";
+					}
+					if (typeof $scope.factoryState === "undefined") {
+					$scope.factoryState = "";
+					}
+					if (typeof $scope.factoryCount === "undefined") {
+					$scope.factoryCount = "";
+					}
+					address = $scope.factoryStreet+","+$scope.factoryCity+","+$scope.factoryState+","+ $scope.factoryCount;
+					console.log(address);
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(function (position) {
+							geocoder.geocode({'address': address}, function(results, status) {
+							if (status === 'OK') {
+								lat = results[0].geometry.location.lat();
+								lng = results[0].geometry.location.lng();
+								$scope.$apply(function(){
+									$scope.distance = parseInt(distance(lat,lng, position.coords.latitude, position.coords.longitude)) + " km";
+								});           
+							} else {
+								alert('Geocode was not successful for the following reason: ' + status);
+							}
+							});
+						});
+					} else { 
+						console.log("Geolocation is not supported by this browser.");
+						$scope.$apply(function(){
+							$scope.distance = "Your browser does not support geolocation";
+						});
+					}
+				} else {
+					if (readCookie("id_token")) {
+						console.log("unregistered product");
+					} else {
+						alert("This product is unregistered, you must sign in to continue");
+					}
+				}
                 
-	      }
-                
-            })
+			})
             .error(function(data) {
                 console.log('Error: ' + data);
             }

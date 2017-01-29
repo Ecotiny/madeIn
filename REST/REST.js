@@ -226,7 +226,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     router.post("/tokensignin", function(req, res){
 	res.sendFile(__dirname, '/public/index.html');
 	var GoogleAuth = require('google-auth-library');
-	var img2ascii = require("image-to-ascii");
 	var auth = new GoogleAuth;
 	var client = new auth.OAuth2("291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com", '', '');
 	client.verifyIdToken(
@@ -240,9 +239,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	      console.log("userid: " + userid);
 	      console.log("name: " + payload['name']);
 	      var query = "SELECT * FROM users WHERE usersid = " + userid;
-	      img2ascii(payload['picture'], function (err, result) {
-		  console.log(result);
-	      })
 	      connection.query(query, function(err,rows){
 		if (Object.keys(rows).length === 0) {
 		  console.log("User not registered");

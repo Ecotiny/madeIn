@@ -10,6 +10,5 @@
     "express": "~4.12.2",
     "google-auth-library": "^0.10.0",
     "mysql": "~2.5.5",
-    "image-to-ascii": "~3.0.5"
   }
 }

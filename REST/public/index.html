@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="madeIn" ng-init="$scope.search=false">
+<html lang="en" ng-app="madeIn">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWhZSLXVmqoQ1VLVTnSB1CwnR2_1E3uIo"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+    <!-- Google Identity Platform -->
+    <meta name="google-signin-scope" content="profile email">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="291473215081-56gt0ug8jsqqq942r7p2dgak4jhjt1q5.apps.googleusercontent.com">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
@@ -21,14 +25,17 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                <a class="navbar-brand" href="#"><span class="made">made</span><span class="in">In</span></a>
-            </div>
-                <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-bind-html="login">{{login}}</li>
-                </ul>
+                    <a class="navbar-brand" href="#"><span class="made">made</span><span class="in">In</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-hide="notSigned"><div style="padding-top:6.5%;" class="g-signin2" data-onsuccess="onSignIn" data-prompt="select_account" data-theme="dark"></div></li>
+                        <li ng-bind-html="login"></li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container">

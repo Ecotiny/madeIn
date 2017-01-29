@@ -23,8 +23,11 @@ angular.module('madeIn', ['ngSanitize'])
     $scope.getProduct = function(barcode) {
         $http.get('/api/products:' + barcode)
             .success(function(data) {
-	      if (data) {
+	      if (typeof data[0] != "undefined") {
 		console.log("registered product");
+                $scope.name =
+                $scope.miles = 
+                $
                 $scope.productname = data[0].productname;
                 $scope.factoryCount = data[0].countryname;
                 $scope.manuname = data[0].manufacturername;
@@ -69,7 +72,8 @@ angular.module('madeIn', ['ngSanitize'])
                 }
 	      } else {
 		console.log("unregistered product");
-		
+		alert("UNREGISTERED");
+                
 	      }
                 
             })

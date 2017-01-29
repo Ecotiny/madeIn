@@ -70,11 +70,11 @@
             <div class="alert alert-info alert-dismissable" id="results" ng-show="search">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 id="name">Name: </h2>
-                        <h2 id="miles">(est) Distance Traveled: </h2>
-                        <h2 id="country">Made In: </h2>
-                        <h2 id="manu">Manufacturer: </h2>
-                        <h2 id="address">Factory Address: </h2>
+                        <h2 ng-bind="name">Name: </h2>
+                        <h2 ng-bind="miles">(est) Distance Traveled: </h2>
+                        <h2 ng-bind="country">Made In: </h2>
+                        <h2 ng-bind="manu">Manufacturer: </h2>
+                        <h2 ng-bind="address">Factory Address: </h2>
                     </div>
                     <div class="col-sm-6" id="value">
                         <h3>{{productname}}</h3>
